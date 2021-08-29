@@ -5,9 +5,14 @@ const PizzaSchema = new Schema(
   {
     pizzaName: {
       type: String,
+      // in mongoose you can provide a custom error message for the required field
+      required: "You need to provide a pizza name!",
+      trim: true,
     },
     createdBy: {
       type: String,
+      required: true,
+      trim: true,
     },
     createdAt: {
       type: Date,
@@ -16,6 +21,9 @@ const PizzaSchema = new Schema(
     },
     size: {
       type: String,
+      // when using enum you cannot enter a custom err message for the required field. You would need to visit the docs to see what options you have
+      required: true,
+      enum: ["Personal", "Small", "Medium", "Large", "Extra Large"],
       default: "Large",
     },
     toppings: [],
